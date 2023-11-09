@@ -28,6 +28,28 @@ public class CourseManager {
         }
         return enrolledStudents;
     }
+    public double calculateCourseAverage(String courseName) {
+        double totalGrades = 0;
+        int totalStudents = 0;
+
+        for (Course course : courses) {
+            if (course.getName().equals(courseName)) {
+                Student[] students = course.getStudents();
+                for (Student student : students) {
+                    totalGrades += student.getGrade();
+                    totalStudents++;
+                }
+                break;
+            }
+        }
+
+        if (totalStudents == 0) {
+            System.out.println("Nu există studenți în cursul cu numele: " + courseName);
+            return 0.0;
+        }
+
+        return totalGrades / totalStudents;
+    }
 public void enrollStudentInCourse(String courseName, Student student){
     for(Course course : courses){
         if (course.getName().equals(courseName)){
@@ -55,5 +77,8 @@ public static void main(String[] args) {
     courseManager.enrollStudentInCourse("Laboratorul 2.1", student3);
 
     courseManager.displayCoursesToConsole();
+    String courseNameToCalculate = "Laboratorul 2";
+    double courseAverage = courseManager.calculateCourseAverage(courseNameToCalculate);
+    System.out.println("Media pentru cursul '" + courseNameToCalculate + "': " + courseAverage);
     }
 }
