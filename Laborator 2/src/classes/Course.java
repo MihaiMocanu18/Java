@@ -19,7 +19,9 @@ public class Course {
         students = newStudents;
 
     }
-
+    public Professor getTeacher(){
+        return teacher;
+    }
     public String getName() {
         return name;
     }

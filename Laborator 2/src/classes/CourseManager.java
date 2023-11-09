@@ -28,6 +28,27 @@ public class CourseManager {
         }
         return enrolledStudents;
     }
+    public double calculateProfessorGradingAverage(Professor professor) {
+        double totalGrades = 0;
+        int totalStudents = 0;
+
+        for (Course course : courses) {
+            if (course.getTeacher().equals(professor)) {
+                Student[] students = course.getStudents();
+                for (Student student : students) {
+                    totalGrades += student.getGrade();
+                    totalStudents++;
+                }
+            }
+        }
+
+        if (totalStudents == 0) {
+            System.out.println("Profesorul " + professor.getFullName() + " nu a dat note în niciun curs.");
+            return 0.0;
+        }
+
+        return totalGrades / totalStudents;
+    }
     public double calculateCourseAverage(String courseName) {
         double totalGrades = 0;
         int totalStudents = 0;
