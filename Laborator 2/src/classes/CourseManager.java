@@ -1,4 +1,6 @@
 package classes;
+import java.util.ArrayList;
+import java.util.List;
 public class CourseManager {
     Course[] courses;
     public CourseManager() {
@@ -8,10 +10,23 @@ public class CourseManager {
         int newLength = courses.length + 1;
         Course[] aux = new Course[newLength];
         for (int i = 0; i < courses.length; i++) {
-            aux[i] = courses[i];
-    }
-    aux[newLength - 1] = course;
+            aux[i] = courses[i];}
+        aux[newLength - 1] = course;
     courses = aux;
+    }
+    public List<String> listStudentsInCourse(String courseName){
+        List<String> enrolledStudents = new ArrayList<>();
+
+        for (Course course : courses) {
+            if (course.getName().equals(courseName)) {
+                Student[] students = course.getStudents();
+                for (Student student : students) {
+                    enrolledStudents.add(student.getFullName());
+                }
+                break;
+            }
+        }
+        return enrolledStudents;
     }
 public void enrollStudentInCourse(String courseName, Student student){
     for(Course course : courses){
