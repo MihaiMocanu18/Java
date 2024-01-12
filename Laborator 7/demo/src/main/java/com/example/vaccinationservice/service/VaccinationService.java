@@ -24,7 +24,6 @@ public class VaccinationService {
                     Vaccinare vaccinare = new Vaccinare();
                     vaccinare.setCountry(csvRecord.get("country"));
                     vaccinare.setIsoCode(csvRecord.get("iso_code"));
-                    // Setări pentru alte atribute
                     return vaccinare;
                 }
             }
@@ -42,13 +41,17 @@ public class VaccinationService {
         Iterator<Vaccinare> iterator = vaccinationList.iterator();
         while (iterator.hasNext()) {
             Vaccinare vaccinare = iterator.next();
-            // Implementați ștergerea obiectului Vaccinare din listă după coloana specificată și valoarea de căutare
-            // ...
+            if (searchValue.equals(vaccinare.getCountry())) {
+                iterator.remove();
+            }
         }
     }
 
     public void updateVaccinationByColumn(String columnName, String searchValue, String newColumnValue) {
-        // Implementați actualizarea obiectului Vaccinare în listă după coloana specificată și valoarea de căutare
-        // ...
+        for (Vaccinare vaccinare : vaccinationList) {
+            if (searchValue.equals(vaccinare.getCountry())) {
+                vaccinare.setCountry(newColumnValue);
+            }
+        }
     }
 }

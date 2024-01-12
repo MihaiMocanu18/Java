@@ -18,10 +18,8 @@ public class Vaccinare {
     private String sourceWebsite;
 
     public Vaccinare() {
-        // Constructor implicit
     }
 
-    // Getteri și setteri pentru fiecare câmp aici
 
     public String getCountry() {
         return country;
@@ -55,7 +53,6 @@ public class Vaccinare {
         this.totalVaccinations = totalVaccinations;
     }
 
-    // Adăugați getteri și setteri pentru celelalte câmpuri
 
     @Override
     public String toString() {
